@@ -329,7 +329,7 @@ def get_cookie_from_browser():
     except:
         pass
 
-    print('Getting cookie from browser failed. Try signing in to coursera.org with Firefox (recommended) or Chrome.')
+    print('Getting cookie from browser failed. Try signing in to coursera.org with Firefox.')
     return None
 
 def parse_class_name_or_url(class_name):
