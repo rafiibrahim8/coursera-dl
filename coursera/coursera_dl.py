@@ -68,7 +68,7 @@ from .parallel import ConsecutiveDownloader, ParallelDownloader
 from .utils import (clean_filename, get_anchor_format, mkdir_p, fix_url,
                     print_ssl_error_message,
                     decode_input, BeautifulSoup, is_debug_run,
-                    spit_json, slurp_json)
+                    spit_json, slurp_json, parse_class_name_or_url)
 
 from .api import expand_specializations
 from .network import get_page, get_page_and_url
@@ -233,6 +233,9 @@ def main():
         return
 
     session = get_session()
+
+    args.class_names = parse_class_name_or_url(args.class_names)
+
     if args.cookies_cauth:
         session.cookies.set('CAUTH', args.cookies_cauth)
     else:

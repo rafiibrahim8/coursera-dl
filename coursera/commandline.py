@@ -12,6 +12,7 @@ from coursera import __version__
 
 from .credentials import get_credentials, CredentialsError, keyring
 from .utils import decode_input
+from .utils import get_cookie_from_browser
 
 LOCAL_CONF_FILE_NAME = 'coursera-dl.conf'
 
@@ -107,9 +108,9 @@ def parse_args(args=None):
         '--subtitle-language',
         dest='subtitle_language',
         action='store',
-        default='all',
+        default='en',
         help='Choose language to download subtitles and transcripts.'
-        '(Default: all) Use special value "all" to download all available.'
+        '(Default: en) Use special value "all" to download all available.'
         'To download subtitles and transcripts of multiple languages,'
         'use comma(s) (without spaces) to seperate the names of the languages,'
         ' i.e., "en,zh-CN".'
@@ -213,8 +214,8 @@ def parse_args(args=None):
         '--video-resolution',
         dest='video_resolution',
         action='store',
-        default='540p',
-        help='video resolution to download (default: 540p); '
+        default='720p',
+        help='video resolution to download (default: 720p); '
         'only valid for on-demand courses; '
         'only values allowed: 360p, 540p, 720p')
 
@@ -346,7 +347,7 @@ def parse_args(args=None):
         '--cauth',
         dest='cookies_cauth',
         action='store',
-        default=None,
+        default=get_cookie_from_browser(),
         help='cauth cookie value from browser')
 
     group_adv_auth.add_argument(

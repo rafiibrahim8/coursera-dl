@@ -14,7 +14,7 @@ import random
 import string
 import logging
 import datetime
-
+import browser_cookie3
 
 from bs4 import BeautifulSoup as BeautifulSoup_
 from xml.sax.saxutils import escape, unescape
@@ -307,3 +307,45 @@ def print_ssl_error_message(exception):
 #####################################################################
 """ % (type(exception).__name__, str(exception))
     logging.error(message)
+
+def get_cookie_from_browser():
+    print('Trying to get cookie from browser.')
+
+    try:
+        cookie_jar = browser_cookie3.firefox(domain_name='coursera.org')
+        for cookie in cookie_jar:
+            if(cookie.name.upper() == 'CAUTH'):
+                print('Using cookie from Firefox.')
+                return cookie.value
+    except:
+        pass
+    
+    try:
+        cookie_jar = browser_cookie3.chrome(domain_name='coursera.org')
+        for cookie in cookie_jar:
+            if(cookie.name.upper() == 'CAUTH'):
+                print('Using cookie from Chrome')
+                return cookie.value
+    except:
+        pass
+
+    print('Getting cookie from browser failed. Try signing in to coursera.org with Firefox (recommended) or Chrome.')
+    return None
+
+def parse_class_name_or_url(class_name):
+    if(not isinstance(class_name,list)):
+        class_name = [class_name]
+    
+    parsed_cn = []
+    
+    for cn in class_name:
+        parsed_cn.append(cn if(len(cn.split('/')) == 1 ) else __parse_class_name_url(cn))
+    return parsed_cn
+
+def __parse_class_name_url(url:str):
+    url = url + '/dummy/part' # i don't want url_parts[i+1] to crush
+    url_parts = url.split('/')
+    for i in range(len(url_parts)):
+        if(url_parts[i].lower() == 'learn'):
+            return url_parts[i+1]
+

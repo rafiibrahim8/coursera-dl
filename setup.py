@@ -87,11 +87,11 @@ trove_classifiers = [
 setup(
     name='coursera-dl',
     version=__version__,
-    maintainer='Rogério Theodoro de Brito',
-    maintainer_email='rbrito@ime.usp.br',
+    maintainer='Ibrahim Rafi',
+    maintainer_email='me@ibrahimrafi.me',
 
     license='LGPL',
-    url='https://github.com/coursera-dl/coursera-dl',
+    url='https://github.com/rafiibrahim8/coursera-dl',
 
     install_requires=requirements,
     extras_require=dict(

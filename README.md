@@ -123,7 +123,7 @@ particular courses that you want to use with `coursera-dl`.
 From a command line (preferably, from a virtual environment), simply issue
 the command:
 
-    pip install coursera-dl
+    python -m pip install git+https://github.com/rafiibrahim8/coursera-dl.git
 
 
 This will download [the latest released version][23] of the program from the
