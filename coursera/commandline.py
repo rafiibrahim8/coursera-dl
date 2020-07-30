@@ -347,7 +347,7 @@ def parse_args(args=None):
         '--cauth',
         dest='cookies_cauth',
         action='store',
-        default=get_cookie_from_browser(),
+        default=None,
         help='cauth cookie value from browser')
 
     group_adv_auth.add_argument(
@@ -500,6 +500,9 @@ def parse_args(args=None):
     if args.cookies_file and not os.path.exists(args.cookies_file):
         logging.error('Cookies file not found: %s', args.cookies_file)
         sys.exit(1)
+    
+    if(not args.cookies_cauth):
+        args.cookies_cauth = get_cookie_from_browser()        
 
     if not args.cookies_file and not args.cookies_cauth:
         try:
