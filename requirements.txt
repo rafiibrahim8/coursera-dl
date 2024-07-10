@@ -8,3 +8,4 @@ configargparse>=0.12.0
 attrs==18.1.0
 keyrings.alt>=3.4.0
 browser-cookie3>=0.11.1
+zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
